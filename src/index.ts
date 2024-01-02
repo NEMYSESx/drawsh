@@ -4,7 +4,7 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import mongoose from "mongoose";
-import connectdb from "./src/config/connectdb";
+import connectdb from "./config/connectdb.js";
 
 const app: Application = express(); //It is of type apllication which is a inbuild type in express
 dotenv.config();
