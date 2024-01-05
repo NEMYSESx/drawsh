@@ -14,4 +14,4 @@ const drawingSchema = new Schema<DrawingDocument>({
 
 const drawingModel = mongoose.model<DrawingDocument>("Drawing", drawingSchema);
 
-export default drawingModel;
+export { drawingModel, DrawingDocument };

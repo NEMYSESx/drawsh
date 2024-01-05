@@ -1,5 +1,6 @@
 import express from "express";
 import register from "../controllers/auth/register.js";
+import Whiteboard from "../controllers/whiteBoard.js";
 
 const router = express.router();
 
@@ -11,10 +12,10 @@ router.post("/api/auth/forgetPassword");
 router.post("api/auth/changePassword");
 
 //whiteboard routes
-router.post("/api/whiteboard/create");
-router.get("/api/whiteboard/:whiteboardId");
-router.put("/api/whiteboard/:whiteboardId");
-router.delete("/api/whiteboard/:whiteboardId");
+router.post("/api/whiteboard/create", Whiteboard);
+router.get("/api/whiteboard/:whiteboardId", Whiteboard);
+router.put("/api/whiteboard/:whiteboardId", Whiteboard);
+router.delete("/api/whiteboard/:whiteboardId", Whiteboard);
 
 //Drawing routes
 router.post("/api/whiteboard/:whiteboardId/draw");

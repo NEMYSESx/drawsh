@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import drawingModel from "../models/drawingModel.js";
+import { drawingModel, DrawingDocument } from "../models/drawingModel.js";
 
 class Whiteboard {
   userId: string;
@@ -19,7 +19,7 @@ class Whiteboard {
         userId: body.userId,
         path: body.path,
         createdAt: new Date(),
-      });
+      } as DrawingDocument);
 
       await whiteBoard.save();
       res.status(201).json({ message: "Whiteboard created successfully" });
@@ -60,3 +60,5 @@ class Whiteboard {
     }
   }
 }
+
+export default Whiteboard;
