@@ -35,3 +35,5 @@ const forgetPassword_email = async (req: Request, res: Response) => {
     res.send({ status: "error", message: "please enter the email" });
   }
 };
+
+export default forgetPassword_email;

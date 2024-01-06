@@ -7,6 +7,15 @@ const changePassword = async (req: Request, res: Response): Promise<void> => {
     const { newPassword, newConfirmPassword } = req.body;
     if (newPassword && newConfirmPassword) {
       if (newPassword === newConfirmPassword) {
+        const salt = await bcrypt.genSalt(10);
+        const new_hashPassword = await bcrypt.hash(newPassword, salt);
+        const user = (req as any).user;
+        if (user) {
+          const updatedUser = await userModel.findByIdAndUpdate(user._id, {
+            $set: { password: new_hashPassword },
+          });
+          console.log(updatedUser);
+        }
       } else {
         res
           .status(404)

@@ -31,3 +31,5 @@ const forgetPassword = async (req: Request, res: Response) => {
     res.send({ status: "error", message: "token invalid" });
   }
 };
+
+export default forgetPassword;
