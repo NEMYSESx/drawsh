@@ -1,21 +1,25 @@
 import express from "express";
-import register from "../controllers/auth/register.js";
-import Whiteboard from "../controllers/whiteBoard.js";
+import Register from "../controllers/auth/register.js";
+import Login from "../controllers/auth/login.js";
+import Logout from "../controllers/auth/logout.js";
+import createWhiteBoard from "../controllers/whiteBoard/createWhiteBoard.js";
+import delWhiteBoard from "../controllers/whiteBoard/delWhiteBoard.js";
+import getWhiteBoard from "../controllers/whiteBoard/getWhiteBoard.js";
 
-const router = express.router();
+const router = express.Router();
 
 //auth routes
-router.post("/api/auth/register", register);
-router.post("/api/auth/login");
-router.post("/api/auth/logout");
-router.post("/api/auth/forgetPassword");
-router.post("api/auth/changePassword");
+router.post("/api/auth/register", Register);
+router.post("/api/auth/login", Login);
+router.post("/api/auth/logout", Logout);
+router.post("/api/auth/forgetPassword", forgetPassword);
+router.post("api/auth/changePassword", changePassword);
 
 //whiteboard routes
-router.post("/api/whiteboard/create", Whiteboard);
-router.get("/api/whiteboard/:whiteboardId", Whiteboard);
-router.put("/api/whiteboard/:whiteboardId", Whiteboard);
-router.delete("/api/whiteboard/:whiteboardId", Whiteboard);
+router.post("/api/whiteboard/create", createWhiteBoard);
+router.get("/api/whiteboard/:whiteboardId", getWhiteBoard);
+router.put("/api/whiteboard/:whiteboardId");
+router.delete("/api/whiteboard/:whiteboardId", delWhiteBoard);
 
 //Drawing routes
 router.post("/api/whiteboard/:whiteboardId/draw");
