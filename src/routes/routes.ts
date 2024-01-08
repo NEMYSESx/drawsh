@@ -27,8 +27,8 @@ router.put("/api/whiteboard/:whiteboardId");
 router.delete("/api/whiteboard/:whiteboardId", delWhiteBoard);
 
 //Drawing routes
-router.post("/api/whiteboard/:whiteboardId/draw");
-router.get("/api/whiteboard/:whiteboardId/draw");
+router.post("/api/whiteboard/:whiteboardId/:drawingId");
+router.get("/api/whiteboard/:whiteboardId/:drawingId");
 
 //recording routes
 router.put("/api/whiteboard/:whiteboardId/recording");
