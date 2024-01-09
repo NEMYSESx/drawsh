@@ -3,11 +3,11 @@ import { drawingModel } from "../../models/drawingModel.js";
 
 const getDrawings = async (req: Request, res: Response): Promise<void> => {
   try {
+    const { whiteboardId } = req.params;
     const drawings = await drawingModel.find({
-      whiteboardId: req.params.whiteboardId,
+      whiteboardId: whiteboardId,
     });
-
-    res.status(200).json(drawings);
+    res.status(201).json(drawings);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });

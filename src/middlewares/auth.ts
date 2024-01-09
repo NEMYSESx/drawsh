@@ -10,7 +10,7 @@ const Auth = async (
   try {
     let token;
     const { authorization } = req.headers;
-    if (authorization && authorization.startWith("Bearer")) {
+    if (authorization && authorization.startsWith("Bearer")) {
       token = authorization.split(" ")[1];
       const { userId } = jwt.verify(token, process.env.JWT_SECRET_KEY);
       req.user = await userModel.findById(userId).select("-password");

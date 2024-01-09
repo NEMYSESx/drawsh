@@ -6,14 +6,17 @@ export const addDrawing = async (
   res: Response
 ): Promise<void> => {
   try {
-    const newDrawing = new drawingModel({});
+    const { userId, whiteBoardId, drawingId, path } = req.body;
+    const newDrawing = new drawingModel({
+      userId: userId,
+      whiteBoardId: whiteBoardId,
+      drawingId: drawingId,
+      path: path,
+    } as DrawingDocument);
     await newDrawing.save();
-
     res.status(201).json({ message: "Drawing added successfully" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
-
-// Implement similar controllers for updating and deleting drawings
