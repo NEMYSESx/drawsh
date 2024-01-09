@@ -6,7 +6,7 @@ const delWhiteBoard = async (req: Request, res: Response): Promise<void> => {
   try {
     const { whiteBoardId } = req.params;
     await drawingModel.deleteMany({
-      whiteBoardId, //DELETE ALL THE DOCUMENT FROM DRAWING DATABASE WITH THIS ID I.E BASICALLY REMOVING ALL THE DRAWING
+      _id: whiteBoardId, //DELETE ALL THE DOCUMENT FROM DRAWING DATABASE WITH THIS ID I.E BASICALLY REMOVING ALL THE DRAWING
     });
 
     const board = await whiteBoardModel.findByIdAndDelete(whiteBoardId);
