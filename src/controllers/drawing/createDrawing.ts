@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { drawingModel, DrawingDocument } from "../../models/drawingModel.js";
 
-export const addDrawing = async (
+export const createDrawing = async (
   req: Request,
   res: Response
 ): Promise<void> => {
@@ -17,3 +17,5 @@ export const addDrawing = async (
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+export default createDrawing;

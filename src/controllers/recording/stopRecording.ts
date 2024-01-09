@@ -24,3 +24,5 @@ export const stopRecording = async (
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+export default stopRecording;

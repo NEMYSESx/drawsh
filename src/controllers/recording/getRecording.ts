@@ -23,3 +23,5 @@ export const getRecording = async (
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+export default getRecording;

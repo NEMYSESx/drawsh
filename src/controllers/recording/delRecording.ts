@@ -13,4 +13,4 @@ const delRecording = async (req: Request, res: Response): Promise<void> => {
     res.status(500).json({ error: "internal server error" });
   }
 };
-export default recordingModel;
+export default delRecording;

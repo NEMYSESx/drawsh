@@ -4,7 +4,7 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import mongoose from "mongoose";
-import connectdb from "./config/connectdb.js";
+import router from "./routes/routes.js";
 
 const app: Application = express(); //It is of type apllication which is a inbuild type in express
 dotenv.config();
@@ -14,6 +14,7 @@ app.use(helmet()); // When you call helmet(), it returns a function that configu
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" })); //The Cross-Origin-Resource-Policy header is designed to control whether the browser should allow the web page to request the specified resource from a different origin. It's a security feature that helps prevent certain types of Cross-Site Request Forgery (CSRF) attacks.
 app.use(morgan("common"));
 
+app.use("/api", router);
 const port: number = parseInt(process.env.PORT as string, 10) || 6000;
 
 mongoose

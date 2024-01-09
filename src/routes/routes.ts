@@ -5,33 +5,47 @@ import Logout from "../controllers/auth/logout.js";
 import forgetPassword from "../controllers/auth/forgetPassword.js";
 import forgetPassword_email from "../controllers/auth/forgetPasswordEmail.js";
 import changePassword from "../controllers/auth/changePassword.js";
+import loggedUser from "../controllers/auth/loggedUser.js";
 import createWhiteBoard from "../controllers/whiteBoard/createWhiteBoard.js";
 import delWhiteBoard from "../controllers/whiteBoard/delWhiteBoard.js";
 import getWhiteBoard from "../controllers/whiteBoard/getWhiteBoard.js";
 import auth from "../middlewares/auth.js";
+import updateWhiteBoard from "../controllers/whiteBoard/updateWhiteBoard.js";
+import startRecording from "../controllers/recording/startRecording.js";
+import getRecording from "../controllers/recording/getRecording.js";
+import stopRecording from "../controllers/recording/stopRecording.js";
+import delRecording from "../controllers/recording/delRecording.js";
+import delDrawing from "../controllers/drawing/delDrawing.js";
+import createDrawing from "../controllers/drawing/createDrawing.js";
+import updateDrawing from "../controllers/drawing/updateDrawing.js";
+import getDrawings from "../controllers/drawing/getDrawing.js";
 
 const router = express.Router();
 
 //auth routes
-router.post("/api/auth/register", Register);
-router.post("/api/auth/login", Login);
-router.post("/api/auth/logout", Logout);
-router.post("/api/auth/forgetPassword", forgetPassword);
-router.post("api/auth/changePassword", changePassword);
-router.get("/api/auth/loggedUser", auth, loggedUser);
+router.post("/auth/register", Register);
+router.post("/auth/login", Login);
+router.post("/auth/logout", auth, Logout);
+router.post("/auth/forgetPassword", forgetPassword_email);
+router.post("/auth/changePassword", auth, changePassword);
+router.post("/auth/resetPassword/:id/:token", forgetPassword);
+router.get("/auth/loggedUser", auth, loggedUser);
 
 //whiteboard routes
-router.post("/api/whiteboard/create", createWhiteBoard);
-router.get("/api/whiteboard/:whiteboardId", getWhiteBoard);
-router.put("/api/whiteboard/:whiteboardId");
-router.delete("/api/whiteboard/:whiteboardId", delWhiteBoard);
+router.post("/whiteboard/create", auth, createWhiteBoard);
+router.get("/whiteboard/:whiteboardId", auth, getWhiteBoard);
+router.put("/whiteboard/:whiteboardId", auth, updateWhiteBoard);
+router.delete("/whiteboard/:whiteboardId", auth, delWhiteBoard);
 
 //Drawing routes
-router.post("/api/whiteboard/:whiteboardId/:drawingId");
-router.get("/api/whiteboard/:whiteboardId/:drawingId");
-
+router.post("/whiteboard/:whiteboardId/:drawingId", auth, createDrawing);
+router.get("/whiteboard/:whiteboardId/:drawingId", auth, getDrawings);
+router.put("/whiteboard/:whiteboardId/:drawingId", auth, updateDrawing);
+router.delete("/whiteboard/:whiteboardId/:drawingId", auth, delDrawing);
 //recording routes
-router.put("/api/whiteboard/:whiteboardId/recording");
-router.get("/api/whiteboard/:whiteboardId/recording");
-router.put("/api/whiteboard/:whiteboardId/recording");
-router.delete("/api/whiteboard/:whiteboardId/recording");
+router.post("/whiteboard/:whiteboardId/recording", auth, startRecording);
+router.get("/whiteboard/:whiteboardId/recording", auth, getRecording);
+router.put("/whiteboard/:whiteboardId/recording", auth, stopRecording);
+router.delete("/whiteboard/:whiteboardId/recording", auth, delRecording);
+
+export default router;

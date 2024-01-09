@@ -27,3 +27,5 @@ export const startRecording = async (
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+export default startRecording;
