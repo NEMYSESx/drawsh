@@ -5,7 +5,7 @@ const getDrawings = async (req: Request, res: Response): Promise<void> => {
   try {
     const { whiteboardId } = req.params;
     const drawings = await drawingModel.find({
-      whiteboardId: whiteboardId,
+      _id: whiteboardId,
     });
     res.status(201).json(drawings);
   } catch (error) {

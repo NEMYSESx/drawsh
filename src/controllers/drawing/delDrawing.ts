@@ -4,7 +4,7 @@ import { drawingModel } from "../../models/drawingModel.js";
 const delDrawing = async (req: Request, res: Response): Promise<void> => {
   try {
     const { drawingId } = req.params;
-    const drawing = await drawingModel.findByIdAndDelete(drawingId);
+    const drawing = await drawingModel.findByIdAndDelete({ _id: drawingId });
     if (!drawing) {
       res.status(404).json({ error: "Drawing not found" });
       return;

@@ -9,7 +9,9 @@ const delWhiteBoard = async (req: Request, res: Response): Promise<void> => {
       _id: whiteBoardId, //DELETE ALL THE DOCUMENT FROM DRAWING DATABASE WITH THIS ID I.E BASICALLY REMOVING ALL THE DRAWING
     });
 
-    const board = await whiteBoardModel.findByIdAndDelete(whiteBoardId);
+    const board = await whiteBoardModel.findByIdAndDelete({
+      _id: whiteBoardId,
+    }); //deleteing the whiteboard
 
     if (!board) {
       res.status(404).json({ error: "board not found" });

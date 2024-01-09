@@ -6,11 +6,8 @@ export const addDrawing = async (
   res: Response
 ): Promise<void> => {
   try {
-    const { userId, whiteBoardId, drawingId, path } = req.body;
+    const { path } = req.body;
     const newDrawing = new drawingModel({
-      userId: userId,
-      whiteBoardId: whiteBoardId,
-      drawingId: drawingId,
       path: path,
     } as DrawingDocument);
     await newDrawing.save();

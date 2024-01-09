@@ -7,7 +7,7 @@ const updateDrawing = async (req: Request, res: Response): Promise<void> => {
     const { path } = req.body;
 
     const updatedDrawing = await drawingModel.findByIdAndUpdate(
-      { drawingId },
+      { _id: drawingId },
       {
         $set: {
           path: path,
