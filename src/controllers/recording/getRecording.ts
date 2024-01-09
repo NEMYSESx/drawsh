@@ -6,13 +6,11 @@ export const getRecording = async (
   res: Response
 ): Promise<void> => {
   try {
-    // Validate whiteboardId and other parameters
     const { whiteboardId } = req.params;
 
-    // Find the latest recording for the whiteboard
     const recording = await recordingModel
-      .findOne({ whiteboardId })
-      .sort({ _id: -1 });
+      .findOne({ _id: whiteboardId })
+      .sort({ _id: -1 }); //we have sorted the recording in decending order to access the recodings easily
 
     if (!recording) {
       res.status(404).json({ error: "No recording found" });

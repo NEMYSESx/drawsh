@@ -6,10 +6,8 @@ export const stopRecording = async (
   res: Response
 ): Promise<void> => {
   try {
-    // Validate whiteboardId and other parameters
     const { whiteboardId } = req.params;
 
-    // Find the recording in progress
     const recording = await recordingModel.findOne({
       whiteboardId,
       actions: [],
@@ -19,9 +17,6 @@ export const stopRecording = async (
       res.status(404).json({ error: "No recording in progress" });
       return;
     }
-
-    // Perform any additional actions needed to stop recording
-    // ...
 
     res.status(200).json({ message: "Recording stopped" });
   } catch (error) {

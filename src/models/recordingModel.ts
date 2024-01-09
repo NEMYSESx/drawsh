@@ -8,15 +8,21 @@ interface Action {
 
 interface RecordingDocument extends Document {
   userId: Schema.Types.ObjectId;
-  whiteBoardId: String;
+  whiteBoardId: Schema.Types.ObjectId;
+  recordingId: string;
   createdAt: Date;
   actions: Action[];
 }
 
 const recordingSchema = new Schema<RecordingDocument>({
   userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
-  whiteBoardId: { type: String, required: true },
+  whiteBoardId: {
+    type: Schema.Types.ObjectId,
+    ref: "WhiteBoard",
+    required: true,
+  },
   createdAt: { type: Date, default: Date.now },
+  recordingId: { type: String, required: true, unique: true },
   actions: { type: [{ type: Schema.Types.Mixed }], required: true },
 });
 

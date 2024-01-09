@@ -1,4 +1,3 @@
-// controllers/recordingController.ts
 import { Request, Response } from "express";
 import recordingModel from "../../models/recordingModel.js";
 
@@ -7,10 +6,8 @@ export const startRecording = async (
   res: Response
 ): Promise<void> => {
   try {
-    // Validate whiteboardId and other parameters
     const { whiteboardId } = req.params;
 
-    // Check if a recording is already in progress for the whiteboard
     const existingRecording = await recordingModel.findOne({
       whiteboardId,
       actions: [],
@@ -21,7 +18,6 @@ export const startRecording = async (
       return;
     }
 
-    // Start a new recording
     const newRecording = new recordingModel({ whiteboardId, actions: [] });
     await newRecording.save();
 
